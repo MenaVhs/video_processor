@@ -1,8 +1,13 @@
 import cv2 as cv
-import numpy as np
-import os # operating sys
+import os 
 
-capture = cv.VideoCapture(os.path.join('RataOscuraAvi.avi'))
+# write the video's path
+video_path = 'video.mp4'
+
+orig_name = os.path.splitext(os.path.basename(video_path))[0]
+out_name = f'{orig_name}_VideoOutput.avi'
+
+capture = cv.VideoCapture(os.path.join(video_path)) 
 h = int(capture.get(cv.CAP_PROP_FRAME_HEIGHT))
 w = int(capture.get(cv.CAP_PROP_FRAME_WIDTH))
 
@@ -13,7 +18,7 @@ end_row, end_col = int(h * 0.90), int(w * 0.90)
 brt = 60  
 # Save video
 fourcc = cv.VideoWriter_fourcc(*'XVID')
-save = cv.VideoWriter('RataSalida.avi', fourcc, 10, (w, h))
+save = cv.VideoWriter(out_name, fourcc, 10, (w, h))
 
 # Video captures
 while(capture.isOpened()):
@@ -22,7 +27,7 @@ while(capture.isOpened()):
 
     # Cropping an image
     frame = frame[start_row:end_row, start_col:end_col]
-    # Brillo
+    # Image brightness
     frame[frame < 255-brt] += brt 
     
     # Video transform
@@ -37,6 +42,6 @@ while(capture.isOpened()):
         break
 
 
-save.realise()
-capture.realise()
+save.release()
+capture.release()
 cv.destroyAllWindows

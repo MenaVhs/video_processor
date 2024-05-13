@@ -29,6 +29,6 @@ while(capture.isOpened()):
         break
 
 
-save.realise()
-capture.realise()
+save.release()
+capture.release()
 cv.destroyAllWindows

@@ -34,9 +34,9 @@ while(capture.isOpened()):
     if cv.waitKey(30) & 0xFF == ord('s'): # s = stop
         break
     if not ret:
-        save.realise()
+        save.release()
         break
 
-capture.realise()
+capture.release()
 
 cv.destroyAllWindows
