@@ -1,4 +1,6 @@
 You should install 
 ```pip install ffmpeg-python```
 
-Use key 's' to stop viewing the processed video
+- Run "main.py" file to convert a video. I
+- The video tipe could be .mp4 or .avi.
+- Use key 's' to stop viewing the processed video.
